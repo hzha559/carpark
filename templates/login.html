@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<title>Login</title>
+<h1>Login</h1>
+
+{% with messages = get_flashed_messages() %}
+    <div>{{ messages[0] }}</div>
+{% endwith %}
+
+<form action="{{ url_for('login') }}" method="POST">
+    <p><input type="text" name="username" id="username" placeholder="Username"/></p>
+    <p><input type="password" name="password" id="password" placeholder="Password"/></p>
+    <p><input type="submit" name="submit"/></p>
+</form>
