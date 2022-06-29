@@ -90,12 +90,31 @@
                     <!-- the actual table-->
                     <div class="row">
 
+
+
+                        <p>submitted[[submitted]]</p>
                         <!-- zone temp wodget-->
                         <div class="col-xl-11 col-lg-11">
                              <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Appointments</h6>
                                 </div>
+
+            <!-- this is for the toast-->
+                                <div v-if="submitted === 0" class="toast topof"  role="alert" aria-live="assertive" aria-atomic="true">
+                              <div class="toast-header">
+                                <strong class="mr-auto">Admin</strong>
+                                <small class="text-muted">......</small>
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="toast-body">
+                                Please wait while we submit the booking to the Gate.
+                              </div>
+                            </div>
+                            <!-- end for the toast-->
+
 
                                         <div class="table-responsive" >
                         <table class="table">
@@ -116,7 +135,7 @@
                                 </tr>
                               </thead>
                               <tbody>
-                    <tr v-for="(item,index) in appointment.data" :key="item">
+                    <tr v-for="(item,index) in appointment.data" :key="index">
                     <td v-for="(item2,index2) in item
                 " :key="index2">
                         [[item2]]
@@ -244,7 +263,7 @@ var app=new Vue ({
         data:{
 
             message:['you idiot this is top gear serieal 22 episode 33, tonight james may drives a car, richard hammond djkhkjdhfkjdhfkjdhfkjdhg fgfgfgf','what\' your problem','oh cock'],
-
+            submitted:{{ user.submitted|safe }},
             appointment:{{ user.vav|safe }},
             popuptext:'',
             popuptitle:'',
@@ -270,9 +289,25 @@ var app=new Vue ({
     data : JSON.stringify({'id':event.currentTarget.id,'rego':app.temprego,'data':app.popuptext}),
     success : (data) => {
             app.appointment=data.vav
-
+        app.temprego=''
+        app.submitted=data.submit
+        console.log(data.submit)
+               }
+                   }),
+                       $.ajax({
+    type: 'POST',
+    contentType: 'application/json',
+    url: '/delta1',
+    dataType : 'json',
+    data : JSON.stringify({'id':event.currentTarget.id,'rego':app.temprego,'data':app.popuptext}),
+    success : (data) => {
+        app.appointment=data.vav
+        app.temprego=''
+        app.submitted=data.submit
+        console.log(data.submit)
                }
                    })
+
                        }
             ,
             popup:function(data){
