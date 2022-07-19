@@ -32,59 +32,139 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Carpark Admin</h1>
 
-                    <!-- this is just for the modal-->
+                                       <!-- confirm modal-->
                     <div class="row">
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modelmore" role="document">
-    <div class="modal-content ">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="table-responsive" >
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th scope="col">App ID</th>
-                              <th scope="col">First Name</th>
-                              <th scope="col">Last Name</th>
-                              <th scope="col">Email</th>
-                              <th scope="col">Rego</th>
-                              <th scope="col">Appointment Date</th>
-                              <th scope="col">Updated Time</th>
-                                </tr>
-                              </thead>
+                    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modelmore" role="document">
+                    <div class="modal-content ">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Are you sure you want to delete?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" data-dismiss="modal" id="del" class="btn btn-primary" v-on:click="getdata1">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
- <tbody>
-                    <tr>
-                    <td v-for="(item,index) in popuptext" :key="index">
-                       <div v-if="index === 4">
-                           <input type="email" v-model="temprego" class="form-control datepickermore" id="rego1" v-bind:placeholder="item">
-                       </div>
-                        <div v-else>
-                        [[item]]
-                            </div>
-                    </td>
-                    </tr>
+                </div>
+                    <!-- end this is just for the modal-->
+
+                    <!-- add modal-->
+                    <div class="row">
+                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modelmore" role="document">
+                    <div class="modal-content ">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Carpark Entry</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="table-responsive" >
+                                        <table class="table">
+                                          <thead>
+                                            <tr>
+                                              <th scope="col">App ID</th>
+                                              <th scope="col">First Name</th>
+                                              <th scope="col">Last Name</th>
+                                              <th scope="col">Email</th>
+                                              <th scope="col">Rego</th>
+                                              <th scope="col">Appointment Date</th>
+                                              <th scope="col">Updated Time</th>
+                                                </tr>
+                                              </thead>
+
+                 <tbody>
+                                    <tr>
+                                    <td v-for="index in 7" :key="index">
+                                       <div v-if="index!=1">
+                                           <input type="email" v-model="tempall[index-1]" class="form-control datepickermore" :id="'new'+index" v-bind:placeholder="tempallholder[index-1]">
+                                       </div>
+                                    </td>
+                                    </tr>
 
 
 
-                              </tbody>
-                            </table>
-                          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" data-dismiss="modal" id="save" class="btn btn-primary" v-on:click="getdata1" :disabled="temprego ==''">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" data-dismiss="modal" id="add" class="btn btn-primary" v-on:click="getdata1" :disabled="tempall[1] ==''||tempall[2] ==''">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-</div>
+                </div>
+                    <!-- end this is just for the modal-->
+
+
+
+
+                    <!-- modal edit-->
+                    <div class="row">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modelmore" role="document">
+                    <div class="modal-content ">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="table-responsive" >
+                                        <table class="table">
+                                          <thead>
+                                            <tr>
+                                              <th scope="col">App ID</th>
+                                              <th scope="col">First Name</th>
+                                              <th scope="col">Last Name</th>
+                                              <th scope="col">Email</th>
+                                              <th scope="col">Rego</th>
+                                              <th scope="col">Appointment Date</th>
+                                              <th scope="col">Updated Time</th>
+                                                </tr>
+                                              </thead>
+
+                 <tbody>
+                                    <tr>
+                                    <td v-for="(item,index) in popuptext" :key="index">
+                                       <div v-if="index === 4">
+                                           <input type="email" v-model="temprego" class="form-control datepickermore" id="rego1" v-bind:placeholder="item">
+                                       </div>
+                                        <div v-else>
+                                        [[item]]
+                                            </div>
+                                    </td>
+                                    </tr>
+
+
+
+                                              </tbody>
+                                            </table>
+                                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" data-dismiss="modal" id="save" class="btn btn-primary" v-on:click="getdata1" :disabled="temprego ==''">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                </div>
                     <!-- end this is just for the modal-->
 
                     <!-- the actual table-->
@@ -97,10 +177,21 @@
                         <div class="col-xl-11 col-lg-11">
                              <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Appointments</h6>
+                                    <div class="row">
+                                    <div><h6 class="m-0 font-weight-bold text-primary">Appointments   </h6></div>
+                                    <div class="right"><button type="button" data-toggle="modal" data-target="#exampleModal2" class="btn btn-warning btn-sm "  aria-haspopup="true" aria-expanded="false" aria-expanded="false" >
+                                            New Carpark Booking
+                                    </button></div></div>
                                 </div>
 
             <!-- this is for the toast-->
+                                 <div v-if="submitted === 2" class="alert alert-success" role="alert">
+                                Successfully pushed!
+                                </div>
+                                 <div v-if="submitted === 3" class="alert alert-danger" role="alert">
+                                Push Failed!
+                                </div>
+
                                 <div v-if="submitted === 0" class="toast topof"  role="alert" aria-live="assertive" aria-atomic="true">
                               <div class="toast-header">
                                 <strong class="mr-auto">Admin</strong>
@@ -110,6 +201,11 @@
                                 </button>
                               </div>
                               <div class="toast-body">
+                                   <div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
                                 Please wait while we submit the booking to the Gate.
                               </div>
                             </div>
@@ -142,8 +238,8 @@
 
                     </td>
                         <td>
-                            <div :id="'dele'+item[0]" v-on:click="getdata1">
-                        <button type="button" class="btn btn-warning btn-sm "  aria-haspopup="true" aria-expanded="false" aria-expanded="false" >
+                            <div :id="'dele'+item[0]" data-toggle="modal" data-target="#exampleModal3" v-on:click="getdata2">
+                        <button type="button" class="btn btn-danger btn-sm "  aria-haspopup="true" aria-expanded="false" aria-expanded="false" >
                                             Delete
                         </button></div></td>
                         <td><div :id="'edit'+item[0]" data-toggle="modal" data-target="#exampleModal" v-on:click="popup(item)">
@@ -199,75 +295,22 @@
 {% block data %}
 <script>
 
-function showhide(){
-      if ($(window).width() < 768) {
-      $('.sidebar .collapse').collapse('hide');
-      $(".sidebar").toggleClass("toggled");
-    };
-      $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
-    //console.log('toggle')
-    $("body").toggleClass("sidebar-toggled");
-    $(".sidebar").toggleClass("toggled");
-    if ($(".sidebar").hasClass("toggled")) {
-      $('.sidebar .collapse').collapse('hide');
-    };
-  });
 
-  // Close any open menu accordions when window is resized below 768px
-  $(window).resize(function() {
-    if ($(window).width() < 768) {
-      $('.sidebar .collapse').collapse('hide');
-    };
-
-    // Toggle the side navigation when window is resized below 480px
-    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
-      $("body").addClass("sidebar-toggled");
-      $(".sidebar").addClass("toggled");
-      $('.sidebar .collapse').collapse('hide');
-    };
-  });
-
-  // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
-  $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
-    if ($(window).width() > 768) {
-      var e0 = e.originalEvent,
-        delta = e0.wheelDelta || -e0.detail;
-      this.scrollTop += (delta < 0 ? 1 : -1) * 30;
-      e.preventDefault();
-    }
-  });
-
-  // Scroll to top button appear
-  $(document).on('scroll', function() {
-    var scrollDistance = $(this).scrollTop();
-    if (scrollDistance > 100) {
-      $('.scroll-to-top').fadeIn();
-    } else {
-      $('.scroll-to-top').fadeOut();
-    }
-  });
-
-  // Smooth scrolling using jQuery easing
-  $(document).on('click', 'a.scroll-to-top', function(e) {
-    var $anchor = $(this);
-    $('html, body').stop().animate({
-      scrollTop: ($($anchor.attr('href')).offset().top)
-    }, 1000, 'easeInOutExpo');
-    e.preventDefault();
-  });
-}
 var app=new Vue ({
 
                  delimiters:['[[', ']]'],
         el:"#app",
         data:{
-
-            message:['you idiot this is top gear serieal 22 episode 33, tonight james may drives a car, richard hammond djkhkjdhfkjdhfkjdhfkjdhg fgfgfgf','what\' your problem','oh cock'],
+            message:['this can be changed by oi','via sql'],
+            admin:1,
             submitted:{{ user.submitted|safe }},
             appointment:{{ user.vav|safe }},
             popuptext:'',
             popuptitle:'',
             temprego:'',
+            tempdel:'',
+            tempallholder:['','Apple','Hi','1@hotmail.com','1ss3vv','2022-05-10 19:00','2022-05-11 20:00'],
+            tempall:['','','','','','',''],
         },
         mounted:function() {
 
@@ -277,39 +320,49 @@ var app=new Vue ({
         methods:{
 
                        getdata1:function (event) {
+                           let del1=''
+                           if (event.currentTarget.id==='del'){
+                               del1=app.tempdel
+                           }
+                           else{
+                               del1=event.currentTarget.id
+                           }
+                           //console.log(app.appointment)
                 //temprego=$('#rego1').val(),
                //console.log($('#time2').val())
-
-               console.log(app.temprego)
+                app.submitted=0
+               //console.log(app.tempall)
                    $.ajax({
     type: 'POST',
     contentType: 'application/json',
     url: '/delta',
     dataType : 'json',
-    data : JSON.stringify({'id':event.currentTarget.id,'rego':app.temprego,'data':app.popuptext}),
+    data : JSON.stringify({'id':del1,'rego':app.temprego,'data':app.popuptext,'tempall':app.tempall}),
     success : (data) => {
             app.appointment=data.vav
         app.temprego=''
         app.submitted=data.submit
-        console.log(data.submit)
-               }
-                   }),
-                       $.ajax({
-    type: 'POST',
-    contentType: 'application/json',
-    url: '/delta1',
-    dataType : 'json',
-    data : JSON.stringify({'id':event.currentTarget.id,'rego':app.temprego,'data':app.popuptext}),
-    success : (data) => {
-        app.appointment=data.vav
-        app.temprego=''
-        app.submitted=data.submit
-        console.log(data.submit)
+        app.tempall=['','','','','','','']
+        app.submitted=2
+        setTimeout(() => app.submitted = 1, 2000)// show successful for 2 secs
+                //for (let i=0;i<app.appointment.length;i++){
+            //console.log(app.appointment[i])
+        //}
+        //console.log(data.submit)
                }
                    })
 
+
+
+
+
                        }
             ,
+            getdata2:function(event){
+                app.tempdel=event.currentTarget.id
+                console.log(app.tempdel)
+            },
+
             popup:function(data){
                 app.popuptext=data
             },

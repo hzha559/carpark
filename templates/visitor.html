@@ -29,9 +29,11 @@
                 {% block container %}
                 <div class="container-fluid">
 
+
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Register Your Visit</h1>
-                    <p>Please put in your Email address you used for Monash IVF and the appointment date to get your booking information.
+                    <p>Please put in your Email address you used for Monash IVF and the appointment date to get your booking information.</p>
+                        <p>
                        After the booking is found please fill in you rego, so when you goes to IVF on your day of appointment, it will automatically
                     grant you access.</p>
 
@@ -39,12 +41,32 @@
                     <!-- the actual table-->
                     <div class="row">
 
+
                         <!-- zone temp wodget-->
                         <div class="col-xl-11 col-lg-11">
                              <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Appointments</h6>
                                 </div>
+                                 <!-- toast-->
+                                 <div v-if="0 === 1" class="toast topof"  role="alert" aria-live="assertive" aria-atomic="true">
+                              <div class="toast-header">
+                                <strong class="mr-auto">Admin</strong>
+                                <small class="text-muted">......</small>
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="toast-body">
+                                   <div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+                                Please wait while we submit the booking to the Gate.
+                              </div>
+                            </div>
+                            <!-- end for the toast-->
                                  <div class="row">
                                      <div class="col-auto col1"><h6 class="m-0 font-weight-bold text-primary">Email</h6></div>
                                 <div class="col-auto col1"><input type="email" v-model="tempemail" class="form-control datepickermore" id="rego1" v-bind:placeholder="item"></div>
@@ -98,16 +120,17 @@
                               </tbody>
                             </table>
                           </div>
-                                 <p v-if="appointment.data == ''"> No record has been found, contact Monash Health on 9999999</p>
+                                 <p v-if="appointment.data == ''"> No record has been found, contact Monash IVF on 9999999</p>
                                 <p v-else> You can head to the carpark on the day of your appointment</p>
-                                <div class="d-flex justify-content-center">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-</div>
+
                                             </div>
                                             </div>
                         <!-- end zone temp wodget-->
+                        <div class="row">
+                    <p>FAQs</p>
+                        <p>If your appointment doesn't show up, please check if the email you entered is the email you used for Monash IVF or contact Monash IVF.</p>
+                        <p>Please note once the rego is entered we don't allow the visitor to change it, but you can contact Monash IVF should you want to make a change.</p>
+                            </div>
 
                     </div>
                     <!-- end the actual table-->
@@ -209,8 +232,8 @@ var app=new Vue ({
         el:"#app",
         data:{
 
-            message:['you idiot this is top gear serieal 22 episode 33, tonight james may drives a car, richard hammond djkhkjdhfkjdhfkjdhfkjdhg fgfgfgf','what\' your problem','oh cock'],
-
+            message:['this can be changed by oi','via sql'],
+            admin:0,
             appointment:{{ user.vav|safe }},
             popuptext:'',
             popuptitle:'',
@@ -219,13 +242,16 @@ var app=new Vue ({
             tempdate:'',
         },
         mounted:function() {
-
+        console.log(app.appointment)
 
 
                      },
         methods:{
 
                        getdata1:function (event) {
+                           if (app.tempdate===''){
+                               alert('Must put both Email and Appointment Date')
+                           }
                 //temprego=$('#rego1').val(),
                //console.log($('#time2').val())
                 let temp=app.temprego

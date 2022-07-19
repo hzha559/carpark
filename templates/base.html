@@ -3,16 +3,29 @@
 
 <head>
 <style>
+    .right{
+        position:absolute;
+        right:10px;
+    }
+    .d-flex {
+        overflow-x: visible !important;
+    }
     thead tr th {
   position: sticky;
   top: 0;
         background: #FFFFFF;
 }
+    .toast{
+        max-width:99% !important;
+        width:99% !important;
+        height: 100% !important;
+        font-size: larger !important;
+    }
 .topof{
     position: absolute !important;
-    top: 50% !important;
-    right: 50% !important;
+    /*top: 30% !important;*/
     opacity: 99 !important;
+    z-index:99 !important;
 }
     .pirchart{
         overflow:auto;
@@ -65,7 +78,7 @@ text-align:center;
     font-weight: 600;
 }
     .table-responsive {
-        max-height:370px;
+        /*max-height:370px;*/
 overflow:auto;
  }
     .table-header{
@@ -167,18 +180,18 @@ width:250px;
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search on Monash IVF for..."
+                                aria-label="Search" aria-describedby="basic-addon2" id="search">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
+                                    <i class="fas fa-search fa-sm" onclick="location.href='https://monashivf.com/search/?q='+document.getElementById('search').value"></i>
                                 </button>
                             </div>
                         </div>
                     </form>
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul v-if="admin===1" class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
